@@ -33,11 +33,7 @@ public class MailUtils {
 	
 	private static Session mailAuthenticatior(String username, String password, Properties properties){
 		MailAuthenticator authenticator = null;
-		System.out.println(properties);
-		System.out.println(properties.get("mail.smtp.auth"));
-		System.out.println(Boolean.parseBoolean(String.valueOf(properties.get("mail.smtp.auth"))));
 		if (Boolean.parseBoolean(String.valueOf(properties.get("mail.smtp.auth")))) {
-			System.out.println("xxxx");
 			// 如果需要身份认证，则创建一个密码验证器
 			authenticator = new MailAuthenticator(username, password);
 		}
@@ -48,7 +44,6 @@ public class MailUtils {
 	public static boolean sendMailWithAdditional(MailServer server, MailContent content){
 		
 		Properties properties = mailProperties(server.getServerHost(), server.getServerPort(), server.isValidate());
-		System.out.println(properties);
 		Session session = mailAuthenticatior(server.getUsername(), server.getPassword(), properties);
 		
 		
